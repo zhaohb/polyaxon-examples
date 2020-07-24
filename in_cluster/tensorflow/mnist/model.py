@@ -1,6 +1,7 @@
 import argparse
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 # Polyaxon
 from polyaxon.tracking import Run
