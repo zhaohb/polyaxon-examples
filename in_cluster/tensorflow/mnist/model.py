@@ -37,7 +37,7 @@ def bias_variable(shape):
 
 
 def conv_layer(x, filter_size, out_features, activation, pool_size):
-    W = weight_variable([filter_size, filter_size, x.get_shape()[3].value, out_features])
+    W = weight_variable([filter_size, filter_size, x.get_shape()[3], out_features])
     b = bias_variable([out_features])
     conv = ACTIVATIONS[activation](tf.nn.conv2d(x, W, [1, 1, 1, 1], padding='SAME') + b)
     pool = tf.nn.max_pool(conv, ksize=[1, pool_size, pool_size, 1],
@@ -46,7 +46,7 @@ def conv_layer(x, filter_size, out_features, activation, pool_size):
 
 
 def fully_connected_layer(x, out_size):
-    W = weight_variable([x.get_shape()[1].value, out_size])
+    W = weight_variable([x.get_shape()[1], out_size])
     b = bias_variable([out_size])
     return tf.matmul(x, W) + b
 
@@ -74,7 +74,7 @@ def create_model(conv1_size,
 
     _, conv2_height, conv2_width, conv2_features = conv2.get_shape()
     flattened = tf.reshape(conv2,
-                           [-1, conv2_height.value * conv2_width.value * conv2_features.value])
+                           [-1, conv2_height * conv2_width * conv2_features])
 
     fc_1 = ACTIVATIONS[fc1_activation](fully_connected_layer(flattened, fc1_size))
     fc_1_drop = tf.nn.dropout(fc_1, keep_prob)
