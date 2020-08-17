@@ -13,9 +13,10 @@ ACTIVATIONS = {
 }
 
 OPTIMIZERS = {
-#    'sgd': tf.train.GradientDescentOptimizer,
-#    'rmsprop': tf.train.RMSPropOptimizer,
-    'adam': tf.optimizers.Adam,
+    'sgd': tf.train.GradientDescentOptimizer,
+    'rmsprop': tf.train.RMSPropOptimizer,
+    'adam': tf.train.AdamOptimizer,
+#    'adam': tf.optimizers.Adam,
 }
 
 MNIST_HOST = 'http://yann.lecun.com/exdb/mnist/'
